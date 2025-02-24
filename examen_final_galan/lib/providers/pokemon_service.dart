@@ -32,13 +32,13 @@ class PokemonService extends ChangeNotifier {
     pokemon.clear();
     if (isOffline) {
       // Cargar desde la base de datos local
-      pokemon = await _databaseHelper.getUsers();
+      pokemon = await _databaseHelper.getPokemons();
       print(
         'Usuarios cargados desde la base de datos local: ${pokemon.length}',
       );
     } else {
       // Cargar desde Firebase
-      final url = Uri.https(_baseUrl, 'users.json');
+      final url = Uri.https(_baseUrl, 'pokemon.json');
       final response = await http.get(url);
 
       if (response.body == "null") return;
@@ -66,7 +66,7 @@ class PokemonService extends ChangeNotifier {
     } else {
       await updatePokemon();
     }
-    await loadUsers(); // Recargar la lista de usuarios después de guardar
+    await loadPokemon(); // Recargar la lista de usuarios después de guardar
   }
 
   // Crear un nuevo usuario
