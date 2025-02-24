@@ -31,6 +31,7 @@ class Pokemon {
   String toJson() => json.encode(toMap());
 
   factory Pokemon.fromMap(Map<String, dynamic> json) => Pokemon(
+    id: json["id"]?.toString() ?? "",
     nom: json["nom"]?.toString() ?? "",
     descripcio: json["descripcio"]?.toString() ?? "",
     foto: json["foto"]?.toString() ?? "",
